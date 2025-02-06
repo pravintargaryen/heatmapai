@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Genome Heatmap Generator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>Genome Heatmap Generator</h2>
+    <form id="heatmap-form">
+      <label>Rows:</label>
+      <input type="number" id="rows" min="1" required />
+      <label>Columns:</label>
+      <input type="number" id="columns" min="1" required />
+      <button type="submit">Generate Heatmap</button>
+    </form>
+
+    <h3>Generated Heatmap:</h3>
+    <img
+      id="heatmap-image"
+      src=""
+      alt="Heatmap will appear here"
+      style="max-width: 500px; display: none"
+    />
+
+    <script>
+      $("#heatmap-form").submit(function (e) {
+        e.preventDefault();
+        let rows = $("#rows").val();
+        let columns = $("#columns").val();
+
+        $.post("/generate", { rows, columns }, function (data) {
+          $("#heatmap-image").attr("src", data.imageUrl).show();
+        });
+      });
+    </script>
+  </body>
+</html>
