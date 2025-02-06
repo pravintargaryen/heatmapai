@@ -3,12 +3,14 @@ import fs from "fs";
 import axios from "axios";
 import FormData from "form-data";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
 
 const API_KEY = process.env.STABILITY_API_KEY;
 
