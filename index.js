@@ -22,7 +22,7 @@ app.post("/generate", async (req, res) => {
 
   try {
     const response = await axios.postForm(
-      "https://api.stability.ai/v2beta/stable-image/generate/ultra",
+      "https://api.stability.ai/v2beta/stable-image/generate/core",
       axios.toFormData(payload, new FormData()),
       {
         responseType: "arraybuffer",
